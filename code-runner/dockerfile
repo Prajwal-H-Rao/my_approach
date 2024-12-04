@@ -1,0 +1,23 @@
+FROM node:alpine
+
+RUN adduser -D appuser
+
+WORKDIR /code
+
+RUN apk add --no-cache python3 make g++
+
+COPY package*.json ./
+
+RUN npm install
+
+COPY . .
+
+RUN chown -R appuser:appuser /code
+
+RUN chmod -R 700 /code  
+
+USER appuser
+
+EXPOSE 3000
+
+CMD ["npm", "start"]
