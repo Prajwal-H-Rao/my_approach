@@ -13,7 +13,7 @@ export async function copyS3Folder(source, destination, continuationToken) {
       Bucket: process.env.S3_BUCKET ?? "",
       Prefix: source,
       ContiniuationToken: continuationToken,
-    };
+    }
 
     const listCommand = new ListObjectsV2Command(listParams)
     const listObjects = await s3.send(listCommand)
